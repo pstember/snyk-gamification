@@ -1,11 +1,6 @@
 <template>
   <div class="hello">
-    <b-container>
-      <b-row>
-        <b-col class="text-center">
-          <h1> Title goes here with variable {{ customer }}</h1>
-        </b-col>
-      </b-row>
+    <b-container fuild="xl">
       <profile></profile>
       <quests></quests>
     </b-container>

@@ -26,7 +26,20 @@ export default class Game {
   }
 
   public static async load() {
+    Game.init();
     Game.loadTrophies();
+  }
+
+  protected static async init() {
+    //fetch org name
+  
+    Game.apiClient.findOrgName(Game.headers).then( (response) => {
+      //debugger
+      const org = response.data.orgs.filter( (org) => org.id == process.env.VUE_APP_ORG )[0]
+      //debugger
+      store.commit('profile', {org: {slug: org.slug, url:org.url}})
+    })
+      //store org name into store
   }
 
   protected static async loadTrophies() {
