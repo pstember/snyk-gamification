@@ -1,4 +1,3 @@
-import { Issue, License } from '../utils/types';
 
 export default {
   state: {
@@ -6,17 +5,41 @@ export default {
       org: {
         slug: 'dummy',
         url: 'https://google.com',
-      }
+      },
+      level: 'Noob',
+      score: 0,
     },
-    trophies: 0,
+    trophies: {
+      platform: false,
+      fixer: false,
+      notification: false,
+      secure: false,
+      friendly: false,
+    },
   },
   mutations: {
-    trophies(state, payload) {
-      state.trophies = payload;
+    trophy(state, payload) {
+      state.trophies[payload.key] = payload.value;
     },
     profile(state, payload) {
       state.profile.org.slug = payload.org.slug;
       state.profile.org.url = payload.org.url;
+    },
+    addScore(state, payload) {
+      state.profile.score += payload;
+      
+      if(state.profile.score < 5) {
+        state.profile.level = 'Beginner';
+      } else if(state.profile.score < 10) {
+        state.profile.level = 'Intermediate';
+      } else if(state.profile.score < 20) {
+        state.profile.level = 'Pro';
+      } else if(state.profile.score < 40) {
+        state.profile.level = 'Expert';
+      } else {
+        state.profile.level = 'Snyker';
+      }
+
     }
   },
   getters: {

@@ -4,10 +4,11 @@
       <b-col cols="3">
         <base-card>
           <div slot="header" >{{$store.getters.profile.org.slug}}</div>
-            Current level is LEVELLEVELLEVEL
+            Current level is {{$store.getters.profile.level}}
+            <br/>Score {{$store.getters.profile.score}}
             <hr class="my-4">
             Gain X points to move to the next level: 
-            <b-progress :value=5 :max=8></b-progress>
+            <b-progress :value=$store.getters.profile.score :max=8></b-progress>
             <div slot="default">
             <hr class="my-4">
             <b-link :href=$store.getters.profile.org.url>Go to Snyk</b-link>
