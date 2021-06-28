@@ -20,7 +20,7 @@
 </template>
 <script>
   export default {
-    name: "card",
+    name: "base-card",
     props: {
       title: {
         type: String,

@@ -69,4 +69,6 @@ export default class SnykAPI extends HttpClient {
 
   public listAllIntegrations = (params: APIHeaderRequest) => this.instance.get(`/org/${params.org}/integrations`);
 
+  public findOrgName = (params: APIHeaderRequest) => this.instance.get('/orgs');
+
 }
