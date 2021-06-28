@@ -10,13 +10,13 @@ import { Dependency, IssueEnriched, License } from '../utils/types';
 Vue.use(Vuex)
 
 export default class Game {
- 
+
   protected static apiClient: SnykAPI = SnykAPI.getInstance();
 
   // Open-source data fetching
   // Define header for counting vulns
-  protected static  reqVulnBody: APIFiltersVulnBodyRequest = { 
-    filters: { 
+  protected static  reqVulnBody: APIFiltersVulnBodyRequest = {
+    filters: {
       orgs: [process.env.VUE_APP_ORG],
       languages: ['node', 'javascript', 'ruby', 'java', 'scala', 'python', 'golang', 'php', 'dotnet', 'swift-objective-c'],
       types: ['vuln'],
@@ -47,10 +47,10 @@ export default class Game {
     const vulns: IssueEnriched[] = [];
     let trophies;
     //debugger
-    Game.apiClient.listAllIntegrations(Game.headers).then( (response) => {  
+    Game.apiClient.listAllIntegrations(Game.headers).then( (response) => {
       //trophies = new Map(Object.entries(response.data)).size;
       trophies = Object.entries(response.data).length;
-       //debugger;
+       debugger;
 
       // updating store for dynamic rendering
       store.commit('trophies', trophies);
