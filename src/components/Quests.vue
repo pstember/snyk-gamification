@@ -8,10 +8,15 @@
           border-variant="secondary"
           header-bg-variant="primary"
           header-text-variant="white"
-          >
+        >
           <b-list-group>
             <b-list-group-item>SCM Integration </b-list-group-item>
-            <b-list-group-item>Import one project from your SCM</b-list-group-item>
+            <b-list-group-item>Import one project from your SCM 
+              <b-icon id="SCM-help" icon="question-circle-fill" class="con-big text-center" style="color: primary;"></b-icon>
+              <b-popover target="SCM-help" triggers="hover" placement="top">
+                To get help with integration click the <b-link target="_blank" href="https://support.snyk.io/hc/en-us/categories/360000598398-Integrations">LINK</b-link>
+              </b-popover>
+              </b-list-group-item>
             <b-list-group-item disabled>Import several projects </b-list-group-item>
             <b-list-group-item>Extra scan Container/IaC/Code </b-list-group-item>
           </b-list-group>
@@ -66,7 +71,9 @@
             </p>
           </b-card>
 
-          <b-card header="MANAGE" border-variant="secondary">
+          <b-card header="MANAGE" border-variant="secondary"
+          header-bg-variant="primary"
+          header-text-variant="white">
             <b-list-group>
               <b-list-group-item href="#">Create an org</b-list-group-item>
               <b-list-group-item href="#">Create a policy (Enterprise)</b-list-group-item>
@@ -96,5 +103,10 @@ export default class Quests extends Vue {
 </script>
 
 <style scoped>
+
+.card-header {
+  padding: 0px;
+}
+
 
 </style>
