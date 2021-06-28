@@ -1,7 +1,7 @@
 <template>
   <div>
     Profile goes here hehe {{$store.getters.trophies}}
-    <div v-if="$store.getters.trophies > 10">
+    <div v-if="$store.getters.trophies > 0">
         Lots of integration are done
     </div>
     <div v-else>
