@@ -50,7 +50,7 @@ export default class Game {
     Game.apiClient.listAllIntegrations(Game.headers).then( (response) => {
       //trophies = new Map(Object.entries(response.data)).size;
       trophies = Object.entries(response.data).length;
-       debugger;
+       //debugger;
 
       // updating store for dynamic rendering
       store.commit('trophies', trophies);
