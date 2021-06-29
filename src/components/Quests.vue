@@ -5,11 +5,11 @@
       <b-card-group deck>
 
 <!--FIND Box-->
-        <b-card header="FIND" border-variant="secondary" header-bg-variant="info" header-text-variant="white" bg-variant="light">         
+        <b-card header="FIND" border-variant="secondary" header-bg-variant="info" header-text-variant="white" bg-variant="light">
         <p class="card-text mt-2">
             <i> Vulnerabilities while you code, within your SCM integration </i>
           </p>
-          
+
           <b-list-group>
             <!-- Task 1 -->
             <b-list-group-item>
@@ -19,7 +19,7 @@
               <div v-else>
                 <b-badge pill variant="info">2</b-badge><b> SCM Integration </b>
                 <b-icon id="SCM-Integration" icon="question-circle-fill" class="con-big text-center" style="color: primary;"></b-icon>
-                
+
                 <b-popover target="SCM-Integration" triggers="hover" placement="top">
                   <center> How to set your first integration? <br> Click the <b-link target="_blank" href="https://support.snyk.io/hc/en-us/articles/360018010597-Snyk-SCM-integration-good-practices">LINK</b-link> </center>
                 </b-popover>
