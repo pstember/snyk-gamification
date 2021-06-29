@@ -49,15 +49,15 @@ export default class Game {
 
   protected static async loadTrophies() {
     
-    //test trophy
-    Game.apiClient.listAllIntegrations(Game.headers).then( (response) => {
-      //trophies = new Map(Object.entries(response.data)).size;
-      const integrationsCount = Object.entries(response.data).length;
-      if(integrationsCount > 0) {
-        store.commit('trophy', {key: 'fixer', value:true})
-      }
-       //debugger;
-    });
+    // //test trophy
+    // Game.apiClient.listAllIntegrations(Game.headers).then( (response) => {
+    //   //trophies = new Map(Object.entries(response.data)).size;
+    //   const integrationsCount = Object.entries(response.data).length;
+    //   if(integrationsCount > 0) {
+    //     store.commit('trophy', {key: 'fixer', value:true})
+    //   }
+    //    //debugger;
+    // });
 
     //platform trophy
     Game.apiClient.listAllProjects(Game.headers,Game.reqEmptyBody).then( (response) => {
