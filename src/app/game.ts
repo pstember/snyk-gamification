@@ -63,26 +63,52 @@ export default class Game {
     Game.apiClient.listAllProjects(Game.headers,Game.reqEmptyBody).then( (response) => {
       const results = response.data.projects.map( (el) => el.type);
       const myset = new Set(results);
+
+
+      let scmProject=0; //score for task 2, Up to 1 point
+      let projectsScore = 0; //score for task 3, Up to 5 points
+      const maxprojectsScore = 5; 
+      let platformScore=0; //score for task 4, Up to 3 points 
+
+      //to calculate platformscore
+      let containerScore = 0; //1 if present
+      let sastScore = 0; //1 if present
+      let iacScore = 0; //1 if present
       
-      let score = 0;
+      let score=0; //Total score for task 2,3 and 4 (task 1 to be implemented)
 
       //we are using container
       if(myset.has('apk') || myset.has('dockerfile') || myset.has('rpm')) {
-        score++;
+        projectsScore++;
+        containerScore=1;
       }
       //we are using IaC
       if(myset.has('k8sconfig') || myset.has('terraformconfig') || myset.has('helmconfig') || myset.has('cloudformation')) {
-        score++;
+        projectsScore++;
+        iacScore=1;
       }
       //we are using SAST
       if(myset.has('sast') ) {
-        score++
+        projectsScore++
+        sastScore=1;
       }
-      if(score == 3){
+      platformScore = sastScore+containerScore+iacScore;
+
+      if(platformScore == 3){
         store.commit('trophy',{key:'platform',value:true})
       }
+      if(projectsScore>maxprojectsScore) {projectsScore=5;}
+
+      //SCM Integration task
+      const resultsprojectOrigins = response.data.projects.map( (el) => el.origin);
+      const mysetprojectOrigins = new Set(resultsprojectOrigins);
+      if(myset.has('azure-repos') || myset.has('github') || myset.has('gitlab') || myset.has('bitbucket-cloud') || myset.has('bitbucket-server')) {
+      scmProject=1; }
+
+      score=projectsScore+platformScore+scmProject;
+
       store.commit('addScore', score);
-    })
+    
 
     //fixer trophy
     Game.apiClient.countFixedIssues(Game.headers,Game.reqVulnBody).then( (res) => {  
@@ -97,5 +123,4 @@ export default class Game {
     });
 
   }
-
 }
