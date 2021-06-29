@@ -4,8 +4,16 @@ import Vue from 'vue';
 import Vuex from 'vuex'
 import store from './store'
 import App from './App.vue';
+
 // Front-end import
-import './plugins/bootstrap-vue';
+import { BootstrapVue, IconsPlugin } from 'bootstrap-vue';
+// Install BootstrapVue
+Vue.use(BootstrapVue);
+// Optionally install the BootstrapVue icon components plugin
+Vue.use(IconsPlugin);
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './assets/sass/light-bootstrap-dashboard.scss'
+
 // LightBootstrap plugin
 import LightBootstrap from './light-bootstrap-main'
 // Graph lib

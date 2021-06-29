@@ -81,8 +81,8 @@
 
               </b-list-group-item>
               <b-list-group-item href="#">Notification settings
-                <b-icon id="monitor" icon="question-circle-fill" class="con-big text-center" style="color: primary;"></b-icon>
-                <b-popover target="monitor" triggers="hover" placement="top">
+                <b-icon id="monitor-settings" icon="question-circle-fill" class="con-big text-center" style="color: primary;"></b-icon>
+                <b-popover target="monitor-settings" triggers="hover" placement="top">
                   <center> How to configure your notifications? <br> Click the <b-link target="_blank" href="https://support.snyk.io/hc/en-us/articles/360011633117-Notifications">LINK</b-link> </center>
                 </b-popover>
 
@@ -122,13 +122,13 @@
             <b-list-group>
               <b-list-group-item href="#">Create an org
                 <b-icon id="Create-an-org" icon="question-circle-fill" class="con-big text-center" style="color: primary;"></b-icon>
-                <b-popover target="ACreate-an-org" triggers="hover" placement="top">
+                <b-popover target="Create-an-org" triggers="hover" placement="top">
                   <center> How to create an organization? <br> Click the <b-link target="_blank" href="https://support.snyk.io/hc/en-us/articles/360004008418-Manage-Snyk-organizations">LINK</b-link> </center>
                 </b-popover>
               </b-list-group-item>
               <b-list-group-item href="#">Create a policy (Enterprise)
                 <b-icon id="Create-policy" icon="question-circle-fill" class="con-big text-center" style="color: primary;"></b-icon>
-                <b-popover target="ACreate-policy" triggers="hover" placement="top">
+                <b-popover target="Create-policy" triggers="hover" placement="top">
                   <center> How to create new policies? <br> Click the <b-link target="_blank" href="https://support.snyk.io/hc/en-us/articles/360007547397-Creating-and-editing-policies">LINK</b-link> </center>
                 </b-popover>
               </b-list-group-item>
