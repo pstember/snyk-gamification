@@ -32,7 +32,7 @@ export default class Game {
 
   public static async load() {
     Game.init();
-    Game.loadTrophies();
+    Game.validateTasks();
   }
 
   protected static async init() {
@@ -47,7 +47,7 @@ export default class Game {
       //store org name into store
   }
 
-  protected static async loadTrophies() {
+  protected static async validateTasks() {
     
     // //test trophy
     // Game.apiClient.listAllIntegrations(Game.headers).then( (response) => {
@@ -61,59 +61,72 @@ export default class Game {
 
     //platform trophy
     Game.apiClient.listAllProjects(Game.headers,Game.reqEmptyBody).then( (response) => {
-      const results = response.data.projects.map( (el) => el.type);
-      const myset = new Set(results);
-
-
-      let scmProject=0; //score for task 2, Up to 1 point
-      let projectsScore = 0; //score for task 3, Up to 5 points
-      const maxprojectsScore = 5; 
-      let platformScore=0; //score for task 4, Up to 3 points 
-
-      //to calculate platformscore
-      let containerScore = 0; //1 if present
-      let sastScore = 0; //1 if present
-      let iacScore = 0; //1 if present
       
-      let score=0; //Total score for task 2,3 and 4 (task 1 to be implemented)
+      const resultsType = response.data.projects.map( (el) => el.type);
+      const projectType = new Set(resultsType);
+      let projectsCount = response.data.projects.length;
 
+      const maxprojectsScore = 5; 
+
+      // Looking for platform badge + platform related quests
+      let platformScore=0; 
       //we are using container
-      if(myset.has('apk') || myset.has('dockerfile') || myset.has('rpm')) {
-        projectsScore++;
-        containerScore=1;
+      if(projectType.has('apk') || projectType.has('dockerfile') || projectType.has('rpm')) {
+        platformScore++;
       }
       //we are using IaC
-      if(myset.has('k8sconfig') || myset.has('terraformconfig') || myset.has('helmconfig') || myset.has('cloudformation')) {
-        projectsScore++;
-        iacScore=1;
+      if(projectType.has('k8sconfig') || projectType.has('terraformconfig') || projectType.has('helmconfig') || projectType.has('cloudformation')) {
+        platformScore++;
       }
       //we are using SAST
-      if(myset.has('sast') ) {
-        projectsScore++
-        sastScore=1;
+      if(projectType.has('sast') ) {
+        platformScore++;
       }
-      platformScore = sastScore+containerScore+iacScore;
 
-      if(platformScore == 3){
-        store.commit('trophy',{key:'platform',value:true})
+      // check for platform trophy and extra scan task
+      if (platformScore > 0) {
+        store.commit('addScore', platformScore);
+        store.commit('updateQuest',{category:'find',questName: 'extraScan', value: true})
+        if(platformScore == 3) {
+          store.commit('trophy',{key:'platform',value:true})
+        }
       }
-      if(projectsScore>maxprojectsScore) {projectsScore=5;}
 
-      //SCM Integration task
-      const resultsprojectOrigins = response.data.projects.map( (el) => el.origin);
-      const mysetprojectOrigins = new Set(resultsprojectOrigins);
-      if(myset.has('azure-repos') || myset.has('github') || myset.has('gitlab') || myset.has('bitbucket-cloud') || myset.has('bitbucket-server')) {
-      scmProject=1; }
+      //Looking for the number of project imported
+      if(projectsCount>maxprojectsScore) {
+        projectsCount = maxprojectsScore;
+      }
+      if (projectsCount > 0) {
+        store.commit('addScore', projectsCount);
+        store.commit('updateQuest',{category:'find',questName: 'importOne', value: true}) 
+        if(projectsCount > 1) {
+          store.commit('updateQuest',{category:'find',questName: 'importMulti', value: true})
+        }
+      }
 
-      score=projectsScore+platformScore+scmProject;
-
-      store.commit('addScore', score);
-    
+      //Integration tasks
+      const resultsOrigin = response.data.projects.map( (el) => el.origin);
+      const originsSet = new Set(resultsOrigin);
+      // SCM integration
+      if(originsSet.has('azure-repos') || originsSet.has('github') || originsSet.has('gitlab') || originsSet.has('bitbucket-cloud') || originsSet.has('bitbucket-server')) {
+        store.commit('updateQuest',{category:'find',questName: 'scmIntegration', value: true})
+        store.commit('addScore', 1);
+      }
+      // CI/CD or CLI integration
+      if(originsSet.has('cli')) {
+        store.commit('updateQuest',{category:'monitor',questName: 'cicdcli', value: true})
+        store.commit('addScore', 1);
+        if (resultsOrigin.filter( (e) => e == 'cli').length > 1) {
+          store.commit('addScore', 1);
+        }
+      }
+    })
 
     //fixer trophy
-    Game.apiClient.countFixedIssues(Game.headers,Game.reqVulnBody).then( (res) => {  
+    Game.apiClient.listIssuesOnePage(Game.headers,Game.reqVulnBody).then( (res) => {  
       if(res.data.total > 0) {
         store.commit('trophy', {key:'fixer',value:true})
+        store.commit('updateQuest',{category:'fix',questName: 'fixIssue', value: true})
         if(res.data.total > 10) {
           store.commit('addScore', 10);
         } else {

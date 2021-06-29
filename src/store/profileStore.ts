@@ -19,6 +19,34 @@ export default {
       secure: false,
       friendly: false,
     },
+    quests: {
+      find:
+      {
+        scmIntegration: false,
+        importOne: false,
+        importMulti: false,
+        extraScan: false,
+      },
+      fix: {
+        openPR: false,
+        fixIssue: false,
+      },
+      monitor: {
+        cicdcli: false,
+        notification: false,
+        alerts: false,
+      },
+      prevent: {
+        autoFail: false,
+        fixPR: false,
+        health: false,
+      },
+      manage: {
+        multiOrgs: false,
+        policy: false,
+        multiUsers: false,
+      }
+    }
   },
   mutations: {
     trophy(state, payload) {
@@ -27,6 +55,9 @@ export default {
     profile(state, payload) {
       state.profile.org.slug = payload.org.slug;
       state.profile.org.url = payload.org.url;
+    },
+    updateQuest(state,payload) {
+      state.quests[payload.category][payload.questName] = payload.value;
     },
     addScore(state, payload) {
       state.profile.score += payload;
@@ -55,6 +86,7 @@ export default {
   getters: {
     trophies: state => state.trophies,
     profile: state => state.profile,
+    quests: state => state.quests
   },
   modules: {
   }
