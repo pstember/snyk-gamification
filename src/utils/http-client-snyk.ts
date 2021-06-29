@@ -73,6 +73,6 @@ export default class SnykAPI extends HttpClient {
 
   public listAllProjects = async (params: APIHeaderRequest, body: APIFiltersBodyRequest) => this.instance.post(`/org/${params.org}/projects`, body);
 
-  public countFixedIssues = async (params: APIHeaderRequest, body: APIFiltersBodyRequest) => this.instance.post(`reporting/issues/?from=${params.from}&to=${params.to}`, body);
+  public countFixedIssues = async (params: APIHeaderRequest, body: APIFiltersBodyRequest) => this.instance.post(`/reporting/issues/?from=${params.from}&to=${params.to}`, body);
   
 }

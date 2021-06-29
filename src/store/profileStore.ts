@@ -8,6 +8,9 @@ export default {
       },
       level: 'Noob',
       score: 0,
+      minScore: 0,
+      maxScore: 5,
+      nextLevel:5,
     },
     trophies: {
       platform: false,
@@ -30,6 +33,7 @@ export default {
       
       if(state.profile.score < 5) {
         state.profile.level = 'Beginner';
+
       } else if(state.profile.score < 10) {
         state.profile.level = 'Intermediate';
       } else if(state.profile.score < 20) {

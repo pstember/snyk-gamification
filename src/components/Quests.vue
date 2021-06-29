@@ -11,11 +11,19 @@
           </p>
           
           <b-list-group>
-            <b-list-group-item>SCM Integration
-              <b-icon id="SCM-Integration" icon="question-circle-fill" class="con-big text-center" style="color: primary;"></b-icon>
-              <b-popover target="SCM-Integration" triggers="hover" placement="top">
-                <center> How to set your first integration? <br> Click the <b-link target="_blank" href="https://support.snyk.io/hc/en-us/articles/360018010597-Snyk-SCM-integration-good-practices">LINK</b-link> </center>
-              </b-popover>
+            <!-- Task 1 -->
+            <b-list-group-item>
+              <div v-if="$store.getters.trophies.fixer">
+                <s>SCM Integration</s>
+              </div>
+              <div v-else>
+                <b-badge pill variant="info">2</b-badge><b> SCM Integration </b>
+                <b-icon id="SCM-Integration" icon="question-circle-fill" class="con-big text-center" style="color: primary;"></b-icon>
+                
+                <b-popover target="SCM-Integration" triggers="hover" placement="top">
+                  <center> How to set your first integration? <br> Click the <b-link target="_blank" href="https://support.snyk.io/hc/en-us/articles/360018010597-Snyk-SCM-integration-good-practices">LINK</b-link> </center>
+                </b-popover>
+              </div>
 
             </b-list-group-item>
             <b-list-group-item>Import one project from your SCM

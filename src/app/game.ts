@@ -5,7 +5,6 @@ import store from '../store'
 // Snyk API import
 import SnykAPI from '../utils/http-client-snyk';
 import { APIFiltersBodyRequest as APIFiltersVulnBodyRequest, APIHeaderRequest, APIFiltersBodyRequest } from '../utils/apiTypes';
-import { Dependency, IssueEnriched, License } from '../utils/types';
 
 Vue.use(Vuex)
 
@@ -89,6 +88,11 @@ export default class Game {
     Game.apiClient.countFixedIssues(Game.headers,Game.reqVulnBody).then( (res) => {  
       if(res.data.total > 0) {
         store.commit('trophy', {key:'fixer',value:true})
+        if(res.data.total > 10) {
+          store.commit('addScore', 10);
+        } else {
+          store.commit('addScore', res.data.total);
+        }
       }
     });
 
