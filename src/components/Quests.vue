@@ -1,93 +1,54 @@
 <template>
   <div>
-
-    <b-card-group deck>
-      <b-card header="FIND">
-        <b-list-group>
-          <b-list-group-item href="#">SCM Integration </b-list-group-item>
-          <b-list-group-item href="#">Import one project from your SCM</b-list-group-item>
-          <b-list-group-item href="#">Import several projects </b-list-group-item>
-          <b-list-group-item href="#">Extra scan Container/IaC/Code </b-list-group-item>
-        </b-list-group>
-
-        <p class="card-text mt-2">
-          TEXT
-        </p>
-      </b-card>
-
-
-      <b-card header="FIX">
-        <b-list-group>
-          <b-list-group-item href="#">Open a fix-PR </b-list-group-item>
-          <b-list-group-item href="#">Fix an issue</b-list-group-item>
-        </b-list-group>
-
-        <p class="card-text mt-2">
-          TEXT
-        </p>
-      </b-card>
-
-
-      <b-card header="MONITOR">
-        <b-list-group>
-          <b-list-group-item href="#">CI/CD not failing the build or CLI Monitor</b-list-group-item>
-          <b-list-group-item href="#">Configuration notifications </b-list-group-item>
-          <b-list-group-item href="#">Reporting overview  </b-list-group-item>
-        </b-list-group>
-
-        <p class="card-text mt-2">
-          TEXT
-        </p>
-      </b-card>
-
-
-
-    <b-card header="PREVENT">
-      <b-list-group>
-        <b-list-group-item href="#">Automatic fail in the PR Check for High or Critical</b-list-group-item>
-        <b-list-group-item href="#">Automatic PR Check created for existing vulns</b-list-group-item>
-        <b-list-group-item href="#">Health of your application </b-list-group-item>
-      </b-list-group>
-
-      <p class="card-text mt-2">
-        TEXT
-      </p>
-    </b-card>
-
-
-      <b-card header="MANAGE">
-        <b-list-group>
-          <b-list-group-item href="#">Create an org</b-list-group-item>
-          <b-list-group-item href="#">Create a policy (Enterprise)</b-list-group-item>
-          <b-list-group-item href="#">Add additional users </b-list-group-item>
-        </b-list-group>
-
-        <p class="card-text mt-2">
-          TEXT
-        </p>
-      </b-card>
-    </b-card-group>
+    <b-row >
+      <b-col cols=12>
+      <!-- 2 boxes on the first line -->
+      <b-card-group deck>
+        <quest-find/>
+        <quest-fix/>
+      </b-card-group>
+      </b-col>
+    </b-row>
+    <b-row class="mt-3">
+      <b-col cols=12>
+        <!-- 3 boxes on the first line -->
+        <b-card-group deck>
+          <quest-monitor/>
+          <quest-prevent/>
+          <quest-manage/>
+        </b-card-group>
+      </b-col>
+    </b-row>
   </div>
 
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
+import QuestFind from './quests/QuestFind.vue';
+import QuestFix from './quests/QuestFix.vue';
+import QuestMonitor from './quests/QuestMonitor.vue';
+import QuestPrevent from './quests/QuestPrevent.vue';
+import QuestManage from './quests/QuestManage.vue';
 
 @Component({
   components: {
+    QuestFind,
+    QuestFix,
+    QuestMonitor,
+    QuestPrevent,
+    QuestManage,
   },
 })
 export default class Quests extends Vue {
 }
 </script>
 
-<style lang="scss">
+<style scoped>
 
-div{
-
-
-
-
+.card-header {
+  padding: 0px;
 }
+
+
 </style>

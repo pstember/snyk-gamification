@@ -13,8 +13,8 @@ module.exports = {
     config
         .plugin('html')
         .tap(args => {
-            args[0].title = "Snyk Insights";
+            args[0].title = "Snyk Gamified";
             return args;
         })
-  }  
+  },
 }
