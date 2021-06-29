@@ -162,7 +162,7 @@ export default class Quests extends Vue {
 <style scoped>
 
 .card-header {
-  padding: 0px;
+  padding:0px;
 }
 
 
