@@ -16,5 +16,5 @@ module.exports = {
             args[0].title = "Snyk Gamified";
             return args;
         })
-  }  
+  },
 }

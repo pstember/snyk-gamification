@@ -1,8 +1,9 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png" style="height: 300px;">
-    <game customer="Stemby"/>
-    <footer-element></footer-element>
+    <game/>
+    <br/>
+    <footer-element/>
   </div>
 </template>
 
