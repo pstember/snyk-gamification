@@ -6,7 +6,7 @@ export default {
         slug: 'dummy',
         url: 'https://google.com',
       },
-      level: 'Noob',
+      level: 'Beginner',
       score: 0,
       minScore: 0,
       maxScore: 5,

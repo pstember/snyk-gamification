@@ -11,7 +11,7 @@
             <b-progress :value="$store.getters.profile.score - $store.getters.profile.minScore" :max="$store.getters.profile.maxScore- $store.getters.profile.minScore"></b-progress>
             <div slot="default">
             <hr class="my-4">
-            <b-link :href=$store.getters.profile.org.url>Go to Snyk</b-link>
+            <b-link target="_blank" :href=$store.getters.profile.org.url>Go to Snyk</b-link>
             </div>
         </base-card>
       </b-col>

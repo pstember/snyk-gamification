@@ -13,8 +13,8 @@
       <b-col cols=12>
         <!-- 3 boxes on the first line -->
         <b-card-group deck>
-          <quest-monitor/>
           <quest-prevent/>
+          <quest-monitor/>          
           <quest-manage/>
         </b-card-group>
       </b-col>

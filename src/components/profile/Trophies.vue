@@ -124,6 +124,18 @@
           </div>
           <!-- End of friendly badge -->
 
+          <!-- Secret badge, not real -->
+            <b-card border-variant="danger" bg-variant="danger" header-bg-variant="danger" text-variant="white" header="Secret" header-border-variant="dark" align="center">
+              <b-card-text>
+                <b-icon icon="question" class="con-big text-center" font-scale="5" style="color: white;"></b-icon>
+                <hr>
+                <b-icon id="trophy-secret" icon="question-circle-fill" class="con-big text-center" style="color: white;"></b-icon>
+                <b-popover target="trophy-secret" triggers="hover" placement="top">
+                  Do or not do, there is no try!
+                </b-popover>
+              </b-card-text>
+            </b-card>
+
         </b-card-group>
       </div>
     </b-row>
